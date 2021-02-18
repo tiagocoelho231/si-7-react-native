@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export default function CustomButton({
   color = '#406080',
-  onPress,
+  onPress = () => alert("I'm an useless button..."),
   textStyle,
   title = 'Button',
   style,
@@ -11,9 +11,9 @@ export default function CustomButton({
 }) {
   return (
     <TouchableOpacity
-      onPress={onPress || (() => alert("I'm an useless button..."))}
-      style={{ ...styles.button, ...{ backgroundColor: color }, ...style }}
       {...props}
+      onPress={onPress}
+      style={{ ...styles.button, ...{ backgroundColor: color }, ...style }}
     >
       <Text style={{ ...styles.buttonText, ...textStyle }}>{title}</Text>
     </TouchableOpacity>
