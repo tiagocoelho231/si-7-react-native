@@ -8,7 +8,7 @@ export default function Greeting({ name }) {
 const styles = StyleSheet.create({
   text: {
     color: '#202080',
-    fontSize: 25,
+    fontSize: 22,
     textAlign: 'center',
     marginBottom: 20
   }

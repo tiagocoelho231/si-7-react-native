@@ -4,8 +4,10 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
-  Text
+  Text,
+  Dimensions
 } from 'react-native';
+import CustomButton from './components/CustomButton';
 import CustomImage from './components/CustomImage';
 import Greeting from './components/Greeting';
 
@@ -23,9 +25,11 @@ export default function App() {
           <Greeting name={name} />
           <Text style={styles.text}>You killed my father. Prepare to die.</Text>
           <CustomImage
+            caption={name}
             source={require('./assets/inigo-montoya.png')}
-            caption="Inigo Montoya"
+            width={Dimensions.get('window').width}
           />
+          <CustomButton title="I'm a button" />
         </ScrollView>
       </SafeAreaView>
     </>

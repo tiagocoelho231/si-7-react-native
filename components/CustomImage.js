@@ -2,25 +2,29 @@ import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 
 export default function CustomImage({
-  aspectRatio = 906 / 514,
+  aspectRatio = {
+    width: 906,
+    height: 514
+  },
   caption,
+  height,
   source,
+  width = Dimensions.get('window').width,
   ...props
 }) {
-  Image.getSize(source.uri, a => {
-    console.log('a', a);
-  });
   return (
-    <View
-      style={styles.container}
-      onLayout={event => console.log('view', event.nativeEvent)}
-    >
+    <View style={styles.container}>
       <Image
         resizeMode="contain"
         source={source}
-        style={[styles.image, { aspectRatio }]}
+        style={{
+          ...styles.image,
+          ...{
+            height: height || (width * aspectRatio.height) / aspectRatio.width,
+            width
+          }
+        }}
         {...props}
-        onLayout={event => console.log('image', event.nativeEvent)}
       />
       <Text style={styles.caption}>{caption}</Text>
     </View>
@@ -28,12 +32,6 @@ export default function CustomImage({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: Dimensions.get('window').width
-  },
-  image: {
-    maxWidth: Dimensions.get('window').width
-  },
   caption: {
     backgroundColor: '#a0a0a0',
     color: '#ffffff',
